@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navbar"
-    app:startDestination="@id/fragment_init">
+    app:startDestination="@id/fragment_home">
 
     <fragment
         android:id="@+id/fragment_init"
@@ -12,8 +12,44 @@
         tools:layout="@layout/fragment_init" />
 
     <fragment
+        android:id="@+id/fragment_home"
+        android:name="principal.app.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
         android:id="@+id/fragment_favorites"
-        android:name="principal.app.favorites"
+        android:name="principal.app.FavoriteFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="principal.app.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/fragment_login"
+        android:name="principal.app.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_register"
+            app:destination="@id/fragment_register" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_register"
+        android:name="principal.app.RegisterFragment"
+        android:label="@string/register"
+        tools:layout="@layout/fragment_register">
+
+        <action
+            android:id="@+id/action_fragment_register_to_fragment_login"
+            app:destination="@id/fragment_login" />
+
+    </fragment>
+
+
 </navigation>

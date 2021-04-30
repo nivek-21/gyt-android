@@ -2,6 +2,7 @@ package principal.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -13,11 +14,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.fragment)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.fragment_init, R.id.fragment_favorites))
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.fragment_home,
+                R.id.fragment_favorites,
+                R.id.fragment_login,
+                R.id.fragment_register,
+            )
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navController)
     }
 }
