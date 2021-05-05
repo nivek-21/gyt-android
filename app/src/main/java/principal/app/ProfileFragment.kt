@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 
 class ProfileFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -16,8 +17,10 @@ class ProfileFragment : Fragment() {
     ): View? {
         val login = inflater.inflate(R.layout.fragment_login, container, false)
         login.findViewById<Button>(R.id.register_btn).setOnClickListener {
-            Navigation.findNavController(login).navigate(R.id.action_fragment_login_to_fragment_register)
+            Navigation.findNavController(login)
+                .navigate(R.id.action_fragment_login_to_fragment_register)
         }
         return login
     }
+
 }

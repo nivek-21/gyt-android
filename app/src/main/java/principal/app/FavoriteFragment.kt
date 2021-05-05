@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 class FavoriteFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -14,4 +15,5 @@ class FavoriteFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
+
 }

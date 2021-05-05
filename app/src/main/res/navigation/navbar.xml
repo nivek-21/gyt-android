@@ -6,12 +6,6 @@
     app:startDestination="@id/fragment_home">
 
     <fragment
-        android:id="@+id/fragment_init"
-        android:name="principal.app.init"
-        android:label="@string/init"
-        tools:layout="@layout/fragment_init" />
-
-    <fragment
         android:id="@+id/fragment_home"
         android:name="principal.app.HomeFragment"
         android:label="@string/home"
@@ -49,6 +43,12 @@
             android:id="@+id/action_fragment_register_to_fragment_login"
             app:destination="@id/fragment_login" />
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_booking"
+        android:name="principal.app.BookingFragment"
+        android:label="@string/booking"
+        tools:layout="@layout/fragment_booking" />
 
 
 </navigation>

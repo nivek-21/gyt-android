@@ -24,7 +24,7 @@
         android:ems="10"
         android:hint="Dúbai, París..."
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/search_btn"
         app:layout_constraintEnd_toStartOf="@+id/date_picker_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
         android:focusable="false"
         android:hint="Salida"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/search_btn"
         app:layout_constraintEnd_toStartOf="@+id/date_picker_2"
         app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName18"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,13 +52,13 @@
         android:focusable="false"
         android:hint="Llegada"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/search_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date_picker_1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/search_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search"

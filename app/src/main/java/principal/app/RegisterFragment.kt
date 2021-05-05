@@ -16,9 +16,11 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val fragment = inflater.inflate(R.layout.fragment_register, container, false)
+
         fragment.findViewById<Button>(R.id.login_btn).setOnClickListener {
             Navigation.findNavController(fragment).navigate(R.id.action_fragment_register_to_fragment_login)
         }
+
         return fragment
     }
 }

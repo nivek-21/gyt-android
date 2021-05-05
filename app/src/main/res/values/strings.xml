@@ -19,4 +19,5 @@
     <string name="password_confirmation">Contraseña Nuevamente</string>
 
     <string name="search">Buscar</string>
+    <string name="booking">Reserva</string>
 </resources>
