@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.fragment_favorites,
                 R.id.fragment_login,
                 R.id.fragment_register,
+                R.id.etDate
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

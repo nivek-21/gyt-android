@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private val titles = arrayOf("text1", "text2", "text3")
+    private val itemDetails = arrayOf("esto es una prueba de parrafo", "esto es una prueba de parrafo", "esto es una prueba de parrafo")
     private val images = intArrayOf(
         R.drawable.cancun,
         R.drawable.cancun,
@@ -19,10 +20,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView
         var itemTitle: TextView
+        var Details : TextView
 
         init {
             itemImage = itemView.findViewById(R.id.imageView)
             itemTitle = itemView.findViewById(R.id.avatarName)
+            Details =  itemView.findViewById(R.id.item_details)
         }
     }
 
@@ -36,6 +39,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemImage.setImageResource(images[position])
         holder.itemTitle.text = titles[position]
+        holder.Details.text = itemDetails [position]
     }
 
     override fun getItemCount(): Int {
