@@ -17,4 +17,6 @@
     <string name="email">Correo Electrónico</string>
     <string name="password">Contraseña</string>
     <string name="password_confirmation">Contraseña Nuevamente</string>
+
+    <string name="search">Buscar</string>
 </resources>
