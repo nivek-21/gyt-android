@@ -17,14 +17,14 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private val titles = arrayOf(
         "Berlín: entrada al museo de Pérgamo",
-        "Ámsterdam: crucero por el canal al atardecer crucero por el canal al atardecer crucero por el canal al atardecer",
+        "Ámsterdam: crucero por el canal al atardecer",
         "Barcelona: tour en velero con vermú desde Port Vell",
     )
 
-    private val descriptions = arrayOf(
-        "Visite el Museo de Pérgamo con numerosas colecciones impresionantes. Vea piezas de la antigüedad, descubra el Museo de Oriente Medio y el Museo de Arte Islámico.",
-        "Sube a bordo de un exclusivo crucero de 90 min con audioguía disponible en múltiples idiomas. Goza de vistas nocturnas de los edificios y puentes de la ciudad iluminados.",
-        "Disfruta de las vistas de Barcelona desde el mar en un tour en barco de 1,5 h. Sube a bordo de un yate de 12 metros y toma un vermú helado mientras admiras el monumento a Colón, la Barceloneta, el Maremagnum y más. Relájate con tus amigos y tu familia.",
+    private val comments = arrayOf(
+        "0 comentarios",
+        "10 comentarios",
+        "2 comentarios"
     )
 
     private val prices = arrayOf(
@@ -37,13 +37,13 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         var itemImage: ImageView
         var itemPrice: TextView
         var itemTitle: TextView
-        var itemDescription: TextView
+        var itemComment: TextView
 
         init {
             itemImage = itemView.findViewById(R.id.imageView)
             itemTitle = itemView.findViewById(R.id.avatarName)
             itemPrice = itemView.findViewById(R.id.price_text)
-            itemDescription = itemView.findViewById(R.id.price_text)
+            itemComment = itemView.findViewById(R.id.tour_comments)
         }
     }
 
@@ -57,8 +57,11 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemImage.setImageResource(images[position])
         holder.itemTitle.text = titles[position]
-        holder.itemPrice.text = prices[position].toString()
-        holder.itemDescription.text = descriptions[position]
+
+        val price = prices[position].toString()
+        holder.itemPrice.text = "Desde $price $"
+
+        holder.itemComment.text = comments[position]
     }
 
     override fun getItemCount(): Int {
