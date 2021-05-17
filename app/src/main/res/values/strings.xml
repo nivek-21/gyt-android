@@ -20,4 +20,7 @@
 
     <string name="search">Buscar</string>
     <string name="booking">Reserva</string>
+
+    <string name="logout">Cerrar Sesión</string>
+
 </resources>

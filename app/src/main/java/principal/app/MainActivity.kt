@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.fragment_home,
                 R.id.fragment_favorites,
                 R.id.fragment_login,
+                R.id.fragment_profile,
                 R.id.fragment_register,
                 R.id.fragment_booking,
             )
@@ -27,5 +28,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navController)
+
     }
 }
