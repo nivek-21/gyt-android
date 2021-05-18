@@ -28,8 +28,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RegisterFragment : Fragment() {
 
-    private var sharedPreferences: SharedPreferences? = null
-
     private val watcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         }
@@ -54,9 +52,6 @@ class RegisterFragment : Fragment() {
             Navigation.findNavController(fragment)
                 .navigate(R.id.action_fragment_register_to_fragment_login)
         }
-
-        sharedPreferences =
-            activity?.getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
 
         val etName: EditText = fragment.register_full_name_input
         val etEmail: EditText = fragment.register_email_input
@@ -87,14 +82,7 @@ class RegisterFragment : Fragment() {
                     override fun onResponse(call: Call<Auth>, response: Response<Auth>) {
                         val body = response.body()
 
-                        Log.i("Vamo", response.toString())
-                        Log.i("Vamo", body.toString())
-
                         if (body != null) {
-                            val editor = sharedPreferences?.edit()
-                            editor?.putString("isLogged", "true")
-                            editor?.apply()
-
                             context?.let { it1 ->
                                 val preferences = Preferences(it1)
 
@@ -126,7 +114,6 @@ class RegisterFragment : Fragment() {
                     }
 
                 })
-
 
             } else {
                 Toast.makeText(context, "La contraseña digitada es diferente!", Toast.LENGTH_SHORT)

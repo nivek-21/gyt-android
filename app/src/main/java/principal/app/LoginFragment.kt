@@ -27,8 +27,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class LoginFragment : Fragment() {
 
-//    private var sharedPreferences: SharedPreferences? = null
-
     private val loginTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         }
@@ -48,8 +46,6 @@ class LoginFragment : Fragment() {
     ): View? {
         val login = inflater.inflate(R.layout.fragment_login, container, false)
 
-//        val prefs = Preferences(login.context)
-
         login.findViewById<Button>(R.id.register_btn_login).setOnClickListener {
             Navigation.findNavController(login)
                 .navigate(R.id.action_fragment_login_to_fragment_register)
@@ -57,8 +53,6 @@ class LoginFragment : Fragment() {
 
         login.email_input.addTextChangedListener(loginTextWatcher)
         login.password_input.addTextChangedListener(loginTextWatcher)
-
-//        sharedPreferences = activity?.getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
 
         login.findViewById<Button>(R.id.login_btn).setOnClickListener {
 
@@ -76,15 +70,9 @@ class LoginFragment : Fragment() {
             retrofitService.login(data)
                 .enqueue(object : Callback<Auth> {
                     override fun onResponse(call: Call<Auth>, response: Response<Auth>) {
-                        Log.i("Testing", response.body().toString())
-
                         val body = response.body();
 
                         if (body != null) {
-//                            val editor = sharedPreferences?.edit()
-//                            editor?.putString("isLogged", "true")
-//                            editor?.apply()
-
                             context?.let { it1 ->
                                 val preferences = Preferences(it1)
 
@@ -104,14 +92,7 @@ class LoginFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<Auth>, t: Throwable) {
-//                        val editor = sharedPreferences?.edit()
-//                        editor?.putString("logged", "false")
-//                        editor?.apply()
-
                         context?.let { it -> Preferences(it).loggedout() }
-
-                        Log.e("Testing", t.toString())
-                        Log.e("Testing", "Login Failed!")
                     }
                 })
 
