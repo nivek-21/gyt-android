@@ -21,7 +21,11 @@
         android:id="@+id/fragment_profile"
         android:name="principal.app.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_fragment_profile_to_fragment_login"
+            app:destination="@id/fragment_login" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_login"
@@ -31,6 +35,9 @@
         <action
             android:id="@+id/action_fragment_login_to_fragment_register"
             app:destination="@id/fragment_register" />
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_profile"
+            app:destination="@id/fragment_profile" />
     </fragment>
 
     <fragment
@@ -42,6 +49,9 @@
         <action
             android:id="@+id/action_fragment_register_to_fragment_login"
             app:destination="@id/fragment_login" />
+        <action
+            android:id="@+id/action_fragment_register_to_fragment_profile"
+            app:destination="@id/fragment_profile" />
     </fragment>
 
     <fragment
@@ -49,6 +59,5 @@
         android:name="principal.app.BookingFragment"
         android:label="@string/booking"
         tools:layout="@layout/fragment_booking" />
-
 
 </navigation>

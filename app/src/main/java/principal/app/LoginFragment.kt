@@ -1,5 +1,7 @@
 package principal.app
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,11 +9,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import java.util.regex.Pattern
+import principal.app.services.RetrofitService
+import principal.app.services.dto.Auth
+import principal.app.services.dto.Login
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class LoginFragment : Fragment() {
 
@@ -21,8 +34,6 @@ class LoginFragment : Fragment() {
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
            login_btn.isEnabled = email_input.text.isNotEmpty() && password_input.text.isNotEmpty()
-
-
         }
 
         override fun afterTextChanged(s: Editable?) {
@@ -49,7 +60,6 @@ class LoginFragment : Fragment() {
 
     }
 
-
     private fun validate(text: String?): Boolean {
         var p = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%!\\-_?&])(?=\\S+\$).{8,}")
         var m = p.matcher(text)
@@ -62,17 +72,61 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragment = inflater.inflate(R.layout.fragment_login, container, false)
+        val login = inflater.inflate(R.layout.fragment_login, container, false)
 
-        fragment.register_btn.setOnClickListener {
-            Navigation.findNavController(fragment)
+        login.findViewById<Button>(R.id.register_btn_login).setOnClickListener {
+            Navigation.findNavController(login)
                 .navigate(R.id.action_fragment_login_to_fragment_register)
         }
 
-        fragment.email_input.addTextChangedListener(loginTextWatcher)
-        fragment.password_input.addTextChangedListener(passwordTextWatcher)
+        login.email_input.addTextChangedListener(loginTextWatcher)
+        login.password_input.addTextChangedListener(passwordTextWatcher)
 
-        return fragment
+        login.findViewById<Button>(R.id.login_btn).setOnClickListener {
+
+            val retrofitService = Retrofit.Builder()
+                .baseUrl(Constant.BASE_URL)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+                .create(RetrofitService::class.java)
+
+            val email = login.findViewById<EditText>(R.id.email_input).text
+            val password = login.findViewById<EditText>(R.id.password_input).text
+
+            val data = Login(email.toString(), password.toString(), "android_device")
+
+            retrofitService.login(data)
+                .enqueue(object : Callback<Auth> {
+                    override fun onResponse(call: Call<Auth>, response: Response<Auth>) {
+                        val body = response.body();
+
+                        if (body != null) {
+                            context?.let { it1 ->
+                                val preferences = Preferences(it1)
+
+                                preferences.saveUser(body.user)
+                                preferences.saveToken(body.token)
+                                preferences.logged()
+                            }
+
+                            Navigation.findNavController(login)
+                                .navigate(R.id.action_fragment_login_to_fragment_profile)
+
+                        } else {
+                            Toast.makeText(context, "¡El usuario no existe!", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+
+                    }
+
+                    override fun onFailure(call: Call<Auth>, t: Throwable) {
+                        context?.let { it -> Preferences(it).loggedout() }
+                    }
+                })
+
+        }
+
+        return login
     }
 
 }

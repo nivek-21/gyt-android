@@ -32,13 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fullname"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName3"
+        app:layout_constraintBottom_toTopOf="@+id/register_full_name_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/register_full_name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -53,13 +53,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress2"
+        app:layout_constraintBottom_toTopOf="@+id/register_email_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_full_name_input" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/register_email_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -74,13 +74,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
+        app:layout_constraintBottom_toTopOf="@+id/register_password_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintTop_toBottomOf="@+id/register_email_input" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/register_password_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -95,18 +95,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password_confirmation"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword3"
+        app:layout_constraintBottom_toTopOf="@+id/register_password_confirmation_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_input" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
+        android:id="@+id/register_password_confirmation_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/register_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -120,16 +120,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/register_button" />
 
     <Button
-        android:id="@+id/button2"
+        android:enabled="false"
+        android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_password_confirmation_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
