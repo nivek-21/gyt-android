@@ -30,6 +30,7 @@ class LoginFragment : Fragment() {
 
     private val loginTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            //
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -37,33 +38,32 @@ class LoginFragment : Fragment() {
         }
 
         override fun afterTextChanged(s: Editable?) {
+            //
         }
     }
 
     private val passwordTextWatcher = object : TextWatcher{
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            //
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             if(validate(password_input.text.toString()))
                 login_btn.isEnabled = true
             else{
-
                 login_btn.isEnabled = false
-                password_input.setError("Invalid Regex")
+                password_input.setError("¡Formato de contraseña inválido!")
             }
         }
 
         override fun afterTextChanged(s: Editable?) {
+            //
         }
-
-
     }
 
     private fun validate(text: String?): Boolean {
         var p = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%!\\-_?&])(?=\\S+\$).{8,}")
         var m = p.matcher(text)
-        Log.i("test",m.matches().toString())
         return m.matches()
     }
 

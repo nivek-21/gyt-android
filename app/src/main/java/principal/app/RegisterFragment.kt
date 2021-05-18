@@ -25,6 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.regex.Pattern
 
 class RegisterFragment : Fragment() {
 
@@ -41,6 +42,34 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private val passwordTextWatcher = object : TextWatcher{
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            //
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            register_button.isEnabled =
+                register_full_name_input.text.isNotEmpty() && register_email_input.text.isNotEmpty() && register_password_input.text.isNotEmpty() && register_password_confirmation_input.text.isNotEmpty()
+
+            if(validate(register_password_input.text.toString()))
+                register_button.isEnabled = true
+            else{
+                register_button.isEnabled = false
+                register_password_input.setError("¡Formato de contraseña inválido!")
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            //
+        }
+    }
+
+    private fun validate(text: String?): Boolean {
+        var p = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%!\\-_?&])(?=\\S+\$).{8,}")
+        var m = p.matcher(text)
+        return m.matches()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,6 +81,8 @@ class RegisterFragment : Fragment() {
             Navigation.findNavController(fragment)
                 .navigate(R.id.action_fragment_register_to_fragment_login)
         }
+
+        fragment.findViewById<EditText>(R.id.register_password_input).addTextChangedListener(passwordTextWatcher)
 
         val etName: EditText = fragment.register_full_name_input
         val etEmail: EditText = fragment.register_email_input
