@@ -1,4 +1,4 @@
-package principal.app.services.dto
+package principal.app.repositories.responses.dto
 
 data class User(
     val id: Int,

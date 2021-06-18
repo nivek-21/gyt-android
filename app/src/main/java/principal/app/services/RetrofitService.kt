@@ -1,24 +1,37 @@
 package principal.app.services
 
-import principal.app.services.dto.Auth
-import principal.app.services.dto.Login
-import principal.app.services.dto.Register
-import principal.app.services.dto.User
+import principal.app.Constant
+import principal.app.repositories.responses.dto.Auth
+import principal.app.repositories.responses.dto.Login
+import principal.app.repositories.responses.dto.Register
+import principal.app.repositories.responses.dto.User
 import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-interface RetrofitService {
+class RetrofitService {
 
-    @GET("api/user")
-    fun user(@Header("Authorization") token: String): Call<User>
+    fun <Api> buildApi(
+        api: Class<Api>
+    ): Api {
+        return Retrofit.Builder()
+            .baseUrl(Constant.BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create())
+            .build()
+            .create(api)
+    }
 
-    @POST("api/sanctum/token")
-    fun login(@Body data: Login): Call<Auth>
-
-    @POST("/api/logout")
-    fun logout(@Header("Authorization") token: String): Call<String>
-
-    @POST("api/register")
-    fun register(@Body data: Register): Call<Auth>
+//    @GET("api/user")
+//    fun user(@Header("Authorization") token: String): Call<User>
+//
+//    @POST("api/sanctum/token")
+//    fun login(@Body data: Login): Call<Auth>
+//
+//    @POST("/api/logout")
+//    fun logout(@Header("Authorization") token: String): Call<String>
+//
+//    @POST("api/register")
+//    fun register(@Body data: Register): Call<Auth>
 
 }

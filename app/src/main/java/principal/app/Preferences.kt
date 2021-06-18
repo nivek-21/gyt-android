@@ -1,14 +1,11 @@
 package principal.app
 
-import android.content.Context
 import android.content.SharedPreferences
-import principal.app.services.dto.User
+import principal.app.repositories.responses.dto.User
 
-class Preferences(val context: Context) {
-
-    private val storage: SharedPreferences =
-        context.getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE)
-
+class Preferences(
+    private val storage: SharedPreferences?
+) {
     fun saveUser(user: User) {
         this.saveInt("id", user.id)
         this.saveString("name", user.name)
@@ -52,27 +49,26 @@ class Preferences(val context: Context) {
     }
 
     private fun saveString(key: String, value: String) {
-        storage.edit().putString(key, value).apply()
+        storage?.edit()?.putString(key, value)?.apply()
     }
 
     private fun saveInt(key: String, value: Int) {
-        storage.edit().putInt(key, value).apply()
+        storage?.edit()?.putInt(key, value)?.apply()
     }
 
     fun saveBoolean(key: String, value: Boolean) {
-        storage.edit().putBoolean(key, value).apply()
+        storage?.edit()?.putBoolean(key, value)?.apply()
     }
 
     fun getString(key: String): String? {
-        return storage.getString(key, "")
+        return storage?.getString(key, "")
     }
 
     fun getInt(key: String): Int? {
-        return storage.getInt(key, -1)
+        return storage?.getInt(key, -1)
     }
 
     fun getBoolean(key: String): Boolean? {
-        return storage.getBoolean(key, false)
+        return storage?.getBoolean(key, false)
     }
-
 }

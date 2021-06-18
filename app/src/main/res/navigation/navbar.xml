@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="principal.app.HomeFragment"
+        android:name="principal.app.ui.fragments.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/fragment_favorites"
-        android:name="principal.app.FavoriteFragment"
+        android:name="principal.app.ui.fragments.FavoriteFragment"
         android:label="@string/favorites"
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
         android:id="@+id/fragment_profile"
-        android:name="principal.app.ProfileFragment"
+        android:name="principal.app.ui.fragments.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragment_login"
-        android:name="principal.app.LoginFragment"
+        android:name="principal.app.ui.fragments.LoginFragment"
         android:label="@string/login"
         tools:layout="@layout/fragment_login">
         <action
@@ -38,11 +38,14 @@
         <action
             android:id="@+id/action_fragment_login_to_fragment_profile"
             app:destination="@id/fragment_profile" />
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_home"
+            app:destination="@id/fragment_home" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_register"
-        android:name="principal.app.RegisterFragment"
+        android:name="principal.app.ui.fragments.RegisterFragment"
         android:label="@string/register"
         tools:layout="@layout/fragment_register">
 
@@ -56,7 +59,7 @@
 
     <fragment
         android:id="@+id/fragment_booking"
-        android:name="principal.app.BookingFragment"
+        android:name="principal.app.ui.fragments.BookingFragment"
         android:label="@string/booking"
         tools:layout="@layout/fragment_booking" />
 
